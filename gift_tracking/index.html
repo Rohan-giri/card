@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Voucher Tracker</title>
+    <link rel="icon" type="image/x-icon" href="everest.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.ibb.co/QY9zswM/IMG-3371.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        header {
+            background-color: rgba(0, 100, 255, 0.7);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        header img {
+            max-width: 150px;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        form input, form select, form textarea, form button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #0066ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #004db3;
+        }
+
+        .message {
+            text-align: center;
+            margin: 20px auto;
+            background-color: rgba(0, 255, 0, 0.1);
+            color: green;
+            padding: 10px;
+            border: 1px solid green;
+            border-radius: 5px;
+            max-width: 600px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            background-color: #004db3;
+        }
+
+        .buttons a:hover {
+            background-color: #003a80;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.ibb.co/9yXJ8N4/everest.jpg" alt="Logo">
+        <h1>Gift Voucher Tracker</h1>
+    </header>
+
+    <!-- Success Message -->
+    <?php if (!empty($_GET['success']) && $_GET['success'] === 'true'): ?>
+        <div class="message">
+            <p>Voucher added successfully!</p>
+            <div class="buttons">
+                <a href="ad.php">Go to Admin Dashboard</a>
+                <a href="index.html">Add Another Voucher</a>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <form action="process.php" method="POST">
+            <label for="voucher_number">Voucher Number:</label>
+            <input type="text" id="voucher_number" name="voucher_number" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" step="0.01" required>
+
+            <label for="sale_date">Sale Date:</label>
+            <input type="date" id="sale_date" name="sale_date" required>
+
+            <label for="customer_name">Customer Name:</label>
+            <input type="text" id="customer_name" name="customer_name">
+
+            <label for="payment_type">Payment Type:</label>
+            <select id="payment_type" name="payment_type">
+                <option value="Card">Card</option>
+                <option value="Cash">Cash</option>
+                <option value="Complimentary">Complimentary</option>
+            </select>
+
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="notes"></textarea>
+
+            <button type="submit">Add Voucher</button>
+        </form>
+    </div>
+</body>
+</html>
